@@ -1,5 +1,5 @@
 syntax="proto3";
-package woo.demo;
+package woo.demo.protobuf;
 
 option java_outer_classname = "ProtoPerson";
 

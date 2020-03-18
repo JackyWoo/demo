@@ -1,13 +1,11 @@
 package woo.demo.protobuf;
 
-import org.junit.Test;
-import woo.demo.ProtoPerson;
-import woo.demo.ProtoPerson.Person;
+import woo.demo.protobuf.ProtoPerson.Person;
 
 /**
  * Created by wujianchao on 2020/1/2.
  */
-public class ProtobufTest {
+public class Main {
 
     Person john = Person.newBuilder()
             .setId(1234)
@@ -20,8 +18,9 @@ public class ProtobufTest {
             .build();
 
 
-    @Test
-    public void tt(){
+
+
+    public static void main(String[] args){
         String dayno= "201";
         System.out.println(String.valueOf(Double.parseDouble(dayno)).equals(dayno));
         System.out.println(Double.parseDouble(dayno));
