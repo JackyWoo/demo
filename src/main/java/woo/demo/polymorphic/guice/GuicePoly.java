@@ -13,16 +13,16 @@ import java.util.Properties;
  */
 public class GuicePoly<T> {
 
-    public static <T> void registerImpl(Binder binder, String implName, Class<T> implClazz){
-        MapBinder.newMapBinder(binder, String.class, implClazz)
+    public static <T> void registerImpl(Binder binder, Class<T> iClazz, String implName, Class<? extends T> implClazz){
+        MapBinder.newMapBinder(binder, String.class, iClazz)
                 .addBinding(implName).to(implClazz).in(Scopes.SINGLETON);
     }
 
     public static <T> void bind(Binder binder, Class<T> i, String propKey, String defaultImpl) {
-        binder.bind(i).toProvider(new ConfiggedProvider<T>(i, propKey, defaultImpl));
+        binder.bind(i).toProvider(new PolyProvider<T>(i, propKey, defaultImpl));
     }
 
-    private static class ConfiggedProvider<T> implements Provider<T> {
+    private static class PolyProvider<T> implements Provider<T> {
 
         private final String propKey;
 
@@ -35,7 +35,7 @@ public class GuicePoly<T> {
         private Injector ij;
 
 
-        ConfiggedProvider(Class<T> i, String propKey, String defaultImpl) {
+        PolyProvider(Class<T> i, String propKey, String defaultImpl) {
             this.i = i;
             this.propKey = propKey;
             this.defaultImpl = defaultImpl;

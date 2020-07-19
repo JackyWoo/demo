@@ -1,4 +1,4 @@
-package woo.demo.polymorphic.guice;
+package woo.demo.guice.obj.storage;
 
 /**
  * Created by wujianchao on 2020/1/19.
